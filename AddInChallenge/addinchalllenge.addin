@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+	<AddIn Type="Application">
+		<Name>Add-in Challenge</Name>
+		<Assembly>AddInChallenge.dll</Assembly>
+		<ClientId>53CD2B87-5743-4EF9-B2D0-DBD3529071F5</ClientId>
+		<FullClassName>AddInChallenge.ParameterScanner</FullClassName>
+		<Text>AddInChallenge</Text>
+		<Description>Parameter Scanner</Description>
+		<VisibilityMode>AlwaysVisible</VisibilityMode>
+		<VendorId>JSRJ</VendorId>
+		<VendorDescription>Sebastian Rubiano</VendorDescription>
+	</AddIn>
+</RevitAddIns>
