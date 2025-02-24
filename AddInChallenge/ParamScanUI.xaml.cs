@@ -29,17 +29,19 @@ namespace AddInChallenge
 
         private void SelectButton_Click(object sender, RoutedEventArgs e)
         {
+            // Get the parameter name and value from the textboxes
             string paramName = ParameterName.Text;
             string paramValue = ParameterValue.Text;
-
+            // Call the SelectElements method
             SelectPlugin.SelectElements(_uiApp, paramName, paramValue);
         }
 
         private void IsolateButton_Click(object sender, RoutedEventArgs e)
         {
+            // Get the parameter name and value from the textboxes
             string paramName = ParameterName.Text;
             string paramValue = ParameterValue.Text;
-
+            // Call the IsolateElements method 
             SelectPlugin.IsolateElements(_uiApp, paramName, paramValue);
         }
     }

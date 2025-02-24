@@ -97,20 +97,22 @@ namespace AddInChallenge
             using (Transaction tx = new Transaction(doc, "Isolate Elements"))
             {
                 tx.Start();
-
-                FilteredElementCollector collector = new FilteredElementCollector(doc)
-                    .WhereElementIsNotElementType();
-
+                // Collect elements
+                FilteredElementCollector collector = new FilteredElementCollector(doc).WhereElementIsNotElementType();
+                // Create an empyt list
                 List<ElementId> matchingElements = new List<ElementId>();
 
                 foreach (Element elem in collector)
                 {
+                    //Search for parameter in each element
                     Parameter param = elem.LookupParameter(paramName);
+
                     if (param != null)
                     {
                         string value = param.AsString();
                         if (!string.IsNullOrEmpty(value) && value == paramValue)
                         {
+                            //Append the element to the list
                             matchingElements.Add(elem.Id);
                         }
                     }
@@ -118,11 +120,13 @@ namespace AddInChallenge
 
                 if (matchingElements.Count > 0)
                 {
+                    //Isolate the elements and show a message
                     uidoc.ActiveView.IsolateElementsTemporary(matchingElements);
                     TaskDialog.Show("Isolation Result", $"{matchingElements.Count} elements found and isolated.");
                 }
                 else
                 {
+                    //Show a message if no elements are found
                     TaskDialog.Show("No Elements Found", "No elements found with the specified parameter value");
                 }
                     tx.Commit();
@@ -133,20 +137,21 @@ namespace AddInChallenge
         {
             UIDocument uidoc = uiApp.ActiveUIDocument;
             Autodesk.Revit.DB.Document doc = uidoc.Document;
-
-            FilteredElementCollector collector = new FilteredElementCollector(doc)
-                .WhereElementIsNotElementType();
-
+            //collect the eleemnts
+            FilteredElementCollector collector = new FilteredElementCollector(doc).WhereElementIsNotElementType();
+            //create an empty list
             List<ElementId> matchingElements = new List<ElementId>();
 
             foreach (Element elem in collector)
             {
+                //search for parameter in each element
                 Parameter param = elem.LookupParameter(paramName);
                 if (param != null)
                 {
                     string value = param.AsString();
                     if (!string.IsNullOrEmpty(value) && value == paramValue)
                     {
+                        //append the element to the list
                         matchingElements.Add(elem.Id);
                     }
                 }
@@ -154,11 +159,13 @@ namespace AddInChallenge
 
             if (matchingElements.Count > 0)
             {
+                //select the elements and show a message
                 uidoc.Selection.SetElementIds(matchingElements);
                 TaskDialog.Show("Selection Result", $"{matchingElements.Count} elements found and isolated.");
             }
             else
             {
+                //show a message if no elements are found
                 TaskDialog.Show("No Elements Found", "No elements found with the specified parameter value");
             }
         }
